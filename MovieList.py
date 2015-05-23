@@ -38,7 +38,7 @@ class MovieList:
         movie_data_str = ""
         counter = 0
         for item in self.titles:
-            fetch = urlopen('http://www.omdbapi.com/?t=' + item + '&tomatoes=true')
+            fetch = urlopen('http://www.omdbapi.com/?t=' + item + '&y=&plot=short&r=json&tomatoes=true')
             ind_movie_data = str(fetch.read())
             ind_movie_data = ind_movie_data[2:len(ind_movie_data)-1]
             if '\\' in ind_movie_data:
