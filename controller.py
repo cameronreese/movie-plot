@@ -2,13 +2,10 @@ __author__ = 'MBA11'
 import MovieList
 
 
-
-# function to open a text file and retrieve every line and turn it into a list with each
-# element being a line from the file
 def create_list_from_file(file) -> list:
-    """
-    :rtype : list
-    """
+    """function to open a text file and retrieve every line and turn it into an element of a list
+    :param file:
+    :rtype: list"""
     line_number = 0
     new_list = []
     file_data = open(file).readlines()
@@ -17,13 +14,13 @@ def create_list_from_file(file) -> list:
         line_number += 1
     return new_list
 
-# function to strip out all irrelevant data in json movieData
-def format_movie_list() -> str:
-    # read from file into string
-    """
 
+def format_movie_list() -> str:
+    """
+    function to strip out all irrelevant data in json movieData
     :rtype : str
     """
+    # read from file into string
     with open ("movieData", "r") as rawMovieDataFile:
         movieDataStringRaw = rawMovieDataFile.read().replace('\n','')
     # manipulate string to be formatted correctly
@@ -89,7 +86,7 @@ def format_movie_list() -> str:
     return formatted_movie_data
 
 
-print("started...")#movieData
+print("started...")
 
 #create a list from a file of movie titles
 titlesFromTxt = create_list_from_file('movieTitleList')
@@ -118,11 +115,13 @@ print("created json file...")
 
 # Now we need to clean up the json file for each json movie object
 # The format we want the json movie object to be in will then be
-# written to the 'formattedMovieData' file for use in other apps
+# written to the 'formattedMovieData' which then can be amended to the
+# 'MasterFinalList' file manually after final human inspection
 
 # json object format:
     # Title (1), Year (2), Genre (6), Plot(10), tomatoMeter(20), tomatoUserMeter(27)
-
+# I no longer know what the numbers in the () indicate, but will leave them in case
+# I need them for anything in the future
 
 formatted_data = format_movie_list()
 print(formatted_data)
