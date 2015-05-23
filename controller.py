@@ -89,28 +89,31 @@ def format_movie_list() -> str:
     return formatted_movie_data
 
 
-#print("started...")movieData
-# create a list from a file of movie titles
-#titlesFromTxt = create_list_from_file('movieTitleList')
-#print("extracted titles from text file...")
+print("started...")#movieData
 
-# create a listOfMovies object to perform appropriate operations
-#list_of_movies = MovieList.MovieList(titlesFromTxt)
-#print("create object...")
-# trim the year off the title if necessary
-#list_of_movies.trim_title_of_year_and_replace_spaces()
-#print("annotated titles...")
-# sort alphabetically and remove duplicates
-#list_of_movies.sort_and_rem_duplicate_titles()
-#print("cleaned up list...")
+#create a list from a file of movie titles
+titlesFromTxt = create_list_from_file('movieTitleList')
+print("extracted titles from text file...")
 
-#for movie in list_of_movies.titles:
-#    print(movie)
+#create a listOfMovies object to perform appropriate operations
+list_of_movies = MovieList.MovieList(titlesFromTxt)
+print("create object...")
 
-# fetch data from omdb and RT api and create an array of json objects with the movie property fields
-#print("fetching data from internet...")
-#list_of_movies.create_movies_json('movieData')
-#print("created json file...")
+#trim the year off the title if necessary
+list_of_movies.trim_title_of_year_and_replace_spaces()
+print("annotated titles...")
+
+#sort alphabetically and remove duplicates
+list_of_movies.sort_and_rem_duplicate_titles()
+print("cleaned up list...")
+
+for movie in list_of_movies.titles:
+   print(movie)
+
+#fetch data from omdb and RT api and create an array of json objects with the movie property fields
+print("fetching data from internet...")
+list_of_movies.create_movies_json('movieData')
+print("created json file...")
 
 
 # Now we need to clean up the json file for each json movie object
