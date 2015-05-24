@@ -10,7 +10,8 @@ def create_list_from_file(file) -> list:
     new_list = []
     file_data = open(file).readlines()
     while line_number < len(file_data):
-        new_list.append(file_data[line_number])
+        if file_data[line_number] != '\n':
+            new_list.append(file_data[line_number].strip())
         line_number += 1
     return new_list
 
@@ -21,8 +22,8 @@ def format_movie_list() -> str:
     :rtype : str
     """
     # read from file into string
-    with open ("movieData", "r") as rawMovieDataFile:
-        movieDataStringRaw = rawMovieDataFile.read().replace('\n','')
+    with open("movieData", "r") as rawMovieDataFile:
+        movieDataStringRaw = rawMovieDataFile.read().replace('\n', '')
     # manipulate string to be formatted correctly
 
     formatted_movie_data = ""
@@ -36,7 +37,7 @@ def format_movie_list() -> str:
             formatted_movie_data += '\n'
             counter += 1
             continue
-        if c == '}' and formatted_movie_data[len(formatted_movie_data)-1] != '{':
+        if c == '}' and formatted_movie_data[len(formatted_movie_data) - 1] != '{':
             formatted_movie_data = formatted_movie_data[:-2]
             formatted_movie_data += '\n'
             formatted_movie_data += c
@@ -88,13 +89,13 @@ def format_movie_list() -> str:
 
 print("started...")
 
-#create a list from a file of movie titles
+# create a list from a file of movie titles
 titlesFromTxt = create_list_from_file('movieTitleList')
 print("extracted titles from text file...")
 
-#create a listOfMovies object to perform appropriate operations
+#create a MovieList object to perform appropriate operations
 list_of_movies = MovieList.MovieList(titlesFromTxt)
-print("create object...")
+print("create MovieList object...")
 
 #trim the year off the title if necessary
 list_of_movies.trim_title_of_year_and_replace_spaces()
@@ -105,7 +106,7 @@ list_of_movies.sort_and_rem_duplicate_titles()
 print("cleaned up list...")
 
 for movie in list_of_movies.titles:
-   print(movie)
+    print(movie)
 
 #fetch data from omdb and RT api and create an array of json objects with the movie property fields
 print("fetching data from internet...")
@@ -119,7 +120,7 @@ print("created json file...")
 # 'MasterFinalList' file manually after final human inspection
 
 # json object format:
-    # Title (1), Year (2), Genre (6), Plot(10), tomatoMeter(20), tomatoUserMeter(27)
+# Title (1), Year (2), Genre (6), Plot(10), tomatoMeter(20), tomatoUserMeter(27)
 # I no longer know what the numbers in the () indicate, but will leave them in case
 # I need them for anything in the future
 
